@@ -7,7 +7,7 @@ class SearchBar extends Component {
   render() {
     return (
       <Segment>
-        <Form>
+        <Form onSubmit={this.onFormSubmit}>
           <Form.Field>
             <label>Image Search</label>
             <input type="text" value={this.state.term} onChange={e => this.setState({ term: e.target.value })} />
@@ -16,6 +16,12 @@ class SearchBar extends Component {
       </Segment>
     );
   }
+
+  onFormSubmit = event => {
+    event.preventDefault();
+
+    console.log(this.state.term);
+  };
 }
 
 export default SearchBar;
