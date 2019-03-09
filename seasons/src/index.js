@@ -7,6 +7,10 @@ class App extends Component {
   state = { lat: null, errorMessage: "" };
 
   render() {
+    return this.renderContent();
+  }
+
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>;
     }
@@ -15,7 +19,7 @@ class App extends Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <Loader message="Attemping to find your location..."/>;
+    return <Loader message="Attemping to find your location..." />;
   }
 
   componentDidMount() {
