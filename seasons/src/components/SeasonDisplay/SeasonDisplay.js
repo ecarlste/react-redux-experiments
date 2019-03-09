@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 
+const seasonConfig = {
+  summer: {
+    text: "Let's hit the beach!",
+    iconName: "sun"
+  },
+  winter: {
+    text: "Brrr, it's chilly!",
+    iconName: "snowflake"
+  }
+}
+
 class SeasonDisplay extends Component {
   render() {
     const season = this.getSeason();
-    const text =
-      season === "summer" ? "Let's hit the beach!" : "Brrr, it's chilly!";
-    const icon = season === "summer" ? "sun" : "snowflake";
+    const { text, iconName } = seasonConfig[season];
 
     return (
       <div>
-        <i className={`${icon} icon`} />
+        <i className={`${iconName} icon`} />
         <h1>{text}</h1>
-        <i className={`${icon} icon`} />
+        <i className={`${iconName} icon`} />
       </div>
     );
   }
