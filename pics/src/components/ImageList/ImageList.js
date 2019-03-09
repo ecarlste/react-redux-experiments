@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ImageList.css';
 
 class ImageList extends Component {
   render() {
@@ -6,7 +7,7 @@ class ImageList extends Component {
       return <img key={id} alt={alt_description} src={urls.regular} />;
     });
 
-    return <div>{content}</div>;
+    return <div className="image-list">{content}</div>;
   }
 }
 
