@@ -15,7 +15,7 @@ class App extends Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
 
-    return <Loader />;
+    return <Loader message="Attemping to find your location..."/>;
   }
 
   componentDidMount() {
