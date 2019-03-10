@@ -8,6 +8,13 @@ export default class VideoDetail extends Component {
       return <div>No video selected...</div>;
     }
 
-    return <div>{video.snippet.title}</div>;
+    return (
+      <div>
+        <div className="ui segment">
+          <h4 className="ui header">{video.snippet.title}</h4>
+          <p>{video.snippet.description}</p>
+        </div>
+      </div>
+    );
   }
 }
