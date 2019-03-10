@@ -6,9 +6,9 @@ export default class VideoList extends Component {
     const videos = this.props.videos;
 
     const content = videos.map(video => {
-      return <VideoItem key={video.id.videoId} video={video} />;
+      return <VideoItem key={video.id.videoId} video={video} onVideoSelect={this.props.onVideoSelect} />;
     });
 
-    return <div>{content}</div>;
+    return <div className="ui relaxed divided list">{content}</div>;
   }
 }
