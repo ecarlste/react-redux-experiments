@@ -25,6 +25,10 @@ class App extends Component {
     );
   }
 
+  componentDidMount = () => {
+    this.onSubmit('funny cats');
+  };
+
   onSubmit = async term => {
     const response = await youtube.get('/search', {
       params: {
@@ -32,7 +36,10 @@ class App extends Component {
       }
     });
 
-    this.setState({ videos: response.data.items });
+    this.setState({
+      selectedVideo: response.data.items[0],
+      videos: response.data.items
+    });
   };
 
   onVideoSelect = video => {
