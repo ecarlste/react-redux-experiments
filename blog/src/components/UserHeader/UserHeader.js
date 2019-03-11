@@ -12,14 +12,9 @@ export class UserHeader extends Component {
 
     return <div className="header">{user.name}</div>;
   }
-
-  componentDidMount = () => {
-    this.props.fetchUser(this.props.userId);
-  };
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return { user: state.users.find(user => user.id === ownProps.userId) };
 };
 
