@@ -4,11 +4,18 @@ import { fetchPosts } from '../../actions';
 
 export class PostList extends Component {
   render() {
-    return <div />;
+    return <div>Post List</div>;
   }
+
+  componentDidMount = () => {
+    this.props.fetchPosts();
+  };
 }
 
-const mapStateToProps = state => null;
+const mapStateToProps = state => {
+  console.log(state.posts);
+  return { posts: state.posts };
+};
 
 const mapDispatchToProps = { fetchPosts };
 
