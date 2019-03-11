@@ -9,17 +9,35 @@ export default class GoogleAuth extends Component {
 
   renderAuthButton() {
     if (this.state.isSignedIn === null) {
-      return <div>I don't know if I'm are signed in</div>;
+      return null;
     } else if (this.state.isSignedIn) {
-      return <div>I am signed in</div>;
+      return (
+        <button onClick={this.onSignOut} className="ui red google button">
+          <i className="icon google" />
+          Sign Out
+        </button>
+      );
     } else {
-      return <div>I am signed out</div>;
+      return (
+        <button onClick={this.onSignIn} className="ui red google button">
+          <i className="icon google" />
+          Sign In with Google
+        </button>
+      );
     }
   }
 
   onAuthChange = () => {
     console.log('env', process.env);
     this.setState({ isSignedIn: Boolean(window.firebase.auth().currentUser) });
+  };
+
+  onSignIn = () => {
+    window.firebase.auth().signInWithPopup(new window.firebase.auth.GoogleAuthProvider().addScope('email'));
+  };
+
+  onSignOut = () => {
+    window.firebase.auth().signOut();
   };
 
   componentDidMount = () => {
