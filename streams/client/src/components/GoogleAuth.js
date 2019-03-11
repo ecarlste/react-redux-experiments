@@ -29,7 +29,7 @@ class GoogleAuth extends Component {
 
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
-      this.props.signIn();
+      this.props.signIn(window.firebase.auth().currentUser.uid);
     } else {
       this.props.signOut();
     }
