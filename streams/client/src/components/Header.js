@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import GoogleAuth from './GoogleAuth';
 
 export default class Header extends Component {
   render() {
@@ -12,6 +13,7 @@ export default class Header extends Component {
           <Link to="/" className="item">
             My Streams
           </Link>
+          <GoogleAuth />
         </div>
       </div>
     );
