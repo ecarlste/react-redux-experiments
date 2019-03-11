@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 
-export default class GoogleAuth extends Component {
-  state = { isSignedIn: null };
-
+class GoogleAuth extends Component {
   render() {
     return this.renderAuthButton();
   }
 
   renderAuthButton() {
-    if (this.state.isSignedIn === null) {
+    if (this.props.isSignedIn === null) {
       return null;
-    } else if (this.state.isSignedIn) {
+    } else if (this.props.isSignedIn) {
       return (
         <button onClick={this.onSignOutClick} className="ui red google button">
           <i className="icon google" />
@@ -27,8 +27,12 @@ export default class GoogleAuth extends Component {
     }
   }
 
-  onAuthChange = () => {
-    this.setState({ isSignedIn: Boolean(window.firebase.auth().currentUser) });
+  onAuthChange = isSignedIn => {
+    if (isSignedIn) {
+      this.props.signIn();
+    } else {
+      this.props.signOut();
+    }
   };
 
   onSignInClick = () => {
@@ -40,7 +44,21 @@ export default class GoogleAuth extends Component {
   };
 
   componentDidMount = () => {
-    this.setState({ isSignedIn: Boolean(window.firebase.auth().currentUser) });
+    this.onAuthChange(Boolean(window.firebase.auth().currentUser));
     window.firebase.auth().onAuthStateChanged(this.onAuthChange);
   };
 }
+
+const mapStateToProps = state => {
+  return { isSignedIn: state.auth.isSignedIn };
+};
+
+const mapDispatchToProps = {
+  signIn,
+  signOut
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GoogleAuth);
