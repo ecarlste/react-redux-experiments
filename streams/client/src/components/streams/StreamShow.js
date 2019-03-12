@@ -23,7 +23,7 @@ export class StreamShow extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchStream(this.props.match.params);
+    this.props.fetchStream(this.props.match.params.id);
     this.buildPlayer();
   };
 
@@ -38,7 +38,7 @@ export class StreamShow extends Component {
 
     this.player = flv.createPlayer({
       type: 'flv',
-      url: `http://localhost:8000/live/${this.props.match.params}.flv`
+      url: `http://localhost:8000/live/${this.props.match.params.id}.flv`
     });
 
     this.player.attachMediaElement(this.videoRef.current);
