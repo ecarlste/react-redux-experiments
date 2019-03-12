@@ -13,14 +13,14 @@ export default class Button extends Component {
   };
 
   render() {
-    return (
-      <ColorContext.Consumer>
-        {color => (
-          <LanguageContext.Consumer>
-            {language => <button className={`ui button ${color}`}>{Button.config[language].submitText}</button>}
-          </LanguageContext.Consumer>
-        )}
-      </ColorContext.Consumer>
-    );
+    return <ColorContext.Consumer>{color => this.renderButton(color)}</ColorContext.Consumer>;
   }
+
+  renderButton = color => {
+    return (
+      <LanguageContext.Consumer>
+        {language => <button className={`ui button ${color}`}>{Button.config[language].submitText}</button>}
+      </LanguageContext.Consumer>
+    );
+  };
 }
