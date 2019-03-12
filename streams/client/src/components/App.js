@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import StreamCreate from './streams/StreamCreate';
 import StreamDelete from './streams/StreamDelete';
 import StreamEdit from './streams/StreamEdit';
@@ -15,11 +15,13 @@ export default class App extends Component {
         <Router history={history}>
           <Fragment>
             <Header />
-            <Route path="/" exact component={StreamList} />
-            <Route path="/streams/create" component={StreamCreate} />
-            <Route path="/streams/:id" component={StreamShow} />
-            <Route path="/streams/edit/:id" component={StreamEdit} />
-            <Route path="/streams/delete/:id" component={StreamDelete} />
+            <Switch>
+              <Route path="/" exact component={StreamList} />
+              <Route path="/streams/create" component={StreamCreate} />
+              <Route path="/streams/:id" component={StreamShow} />
+              <Route path="/streams/edit/:id" component={StreamEdit} />
+              <Route path="/streams/delete/:id" component={StreamDelete} />
+            </Switch>
           </Fragment>
         </Router>
       </div>
