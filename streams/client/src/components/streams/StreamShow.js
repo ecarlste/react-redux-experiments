@@ -27,6 +27,10 @@ export class StreamShow extends Component {
     this.buildPlayer();
   };
 
+  componentDidUpdate = (prevProps, prevState) => {
+    this.buildPlayer();
+  };
+
   buildPlayer = () => {
     if (this.player || !this.props.stream) {
       return;
