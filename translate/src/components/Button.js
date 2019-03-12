@@ -14,7 +14,10 @@ export default class Button extends Component {
   };
 
   render() {
-    const currentConfig = Button.config[this.context];
-    return <button className="ui primary">{currentConfig.submitText}</button>;
+    return (
+      <LanguageContext.Consumer>
+        {language => <button className="ui button primary">{Button.config[language].submitText}</button>}
+      </LanguageContext.Consumer>
+    );
   }
 }
