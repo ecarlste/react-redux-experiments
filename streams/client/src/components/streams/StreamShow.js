@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import flv from 'flv.js';
 import { fetchStream } from '../../actions';
 
 export class StreamShow extends Component {
@@ -22,7 +23,22 @@ export class StreamShow extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchStream(this.props.match.params.id);
+    this.props.fetchStream(this.props.match.params);
+    this.buildPlayer();
+  };
+
+  buildPlayer = () => {
+    if (this.player || !this.props.stream) {
+      return;
+    }
+
+    this.player = flv.createPlayer({
+      type: 'flv',
+      url: `http://localhost:8000/live/${this.props.match.params}.flv`
+    });
+
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load();
   };
 }
 
