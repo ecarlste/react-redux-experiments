@@ -12,11 +12,12 @@ class StreamCreate extends Component {
     );
   }
 
-  renderInput = ({ input, label }) => {
+  renderInput = ({ input, label, meta }) => {
     return (
       <div className="field">
         <label>{label}</label>
         <input {...input} />
+        <div>{meta.error}</div>
       </div>
     );
   };
@@ -26,6 +27,21 @@ class StreamCreate extends Component {
   };
 }
 
+const validate = formValues => {
+  let errors = {};
+
+  if (!formValues.title) {
+    errors.title = 'title is bad man!';
+  }
+
+  if (!formValues.description) {
+    errors.description = 'invalid description yo!';
+  }
+
+  return errors;
+};
+
 export default reduxForm({
-  form: 'streamCreate'
+  form: 'streamCreate',
+  validate: validate
 })(StreamCreate);
